@@ -40,7 +40,7 @@ class PostController extends Controller
         $post->body = $request->body;  // Cuerpo del post.
         $post->created_by = $userId;  // Organizacion la cual creo el post.
         if ($request->hasFile('image')){ // En este trozo de codigo se hace el cambio de la imagen
-            $file = $request->file('image'); // para que se almacene en la carpeta 'public' y la reconosca como archivo.
+            $file = $request->file('image'); // para que se almacene en la carpeta 'public' y la reconozca como archivo.
             $path = Storage::putFile('public/images/', $request->file('image'));
             $nuevo_path = str_replace('public/','',$path);
             $post->image_url = $nuevo_path;
@@ -80,10 +80,10 @@ class PostController extends Controller
     public function destroy($post_id)
     {
         $post = Post::find($post_id);
-        if($post->image_url){
+        if($post->image_url){ //Si post tiene declarado dentro de si una imagen, se borra la immagen localizada en public
             Storage::delete('public/'.$post->image_url);
         }
-        $post->delete();
+        $post->delete(); //Basicamente se usa la funcion para eliminar dentro de post, vaciandola
         return redirect()->route('posts.index');
     }
 }
