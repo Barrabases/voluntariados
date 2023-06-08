@@ -30,14 +30,14 @@ Route::get('/home', function () { // 'home' Es la pagina donde se encuentra los 
 //----------------------------------------------------------------------------
 //                          Rutas Privadas
 //----------------------------------------------------------------------------
-Route::get('/dashboard', function () {
+Route::get('/dashboard', function () {      //Ruta para Dashboard, el apartado de la pagina que contiene una pagina principal 'Dashboard' y las publicaciones de 'index.blade.php'
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard'); 
+})->middleware(['auth', 'verified'])->name('dashboard'); //Metodo para que si no se encuentra un usuario esta ruta este bloqueada
 //----------------------------------------------------------------------------
 //             Aqui se encuentran las rutas de las funciones
 //----------------------------------------------------------------------------
-Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
-Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+Route::get('/posts', [PostController::class, 'index'])->name('posts.index');//Funcion para abrir posts.index, el cual contiene el apartado de las publicaciones.
+Route::post('/posts', [PostController::class, 'store'])->name('posts.store');//Funcion para llamar al metodo store, el cual registra una publicacion.
 Route::get('/posts/delete/{id}', [PostController::class, 'destroy'])->name('posts.delete'); //Funcion para eliminar mediante { id }
 //----------------------------------------------------------------------------
 //               Estas funciones son nativas de laravel
