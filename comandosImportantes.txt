@@ -1,1 +1,13 @@
 Comandos importantes a tener en cuenta para el correcto funcionamiento del proyecto.
+Importante tener Composer, para verificarlo se puede escribir en la consola: 
+  composer 
+  
+Tambien tener XAMPP, incluyendo su PHP y MySQL.
+Tener Laravel, esto se puede mediante la consola:
+  composer global require laravel/installer
+
+Generar el servidor:
+  php artisan serve
+
+Compilar el codigo en tiempo real:
+  npm run dev
