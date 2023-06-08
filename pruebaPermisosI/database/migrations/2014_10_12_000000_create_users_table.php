@@ -6,9 +6,13 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+     //------------------------------------------------------------------------------------------
     /**
-     * Run the migrations.
+     * Esta es la tabla de usuarios, es la que se estara manipulando en la base de datos
+     * Es importante que con cada cambio que se haga, en la terminal se migren los datos
+     * Usando el comando 'php artisan migrate' para asi migrar esos campos
      */
+     //------------------------------------------------------------------------------------------
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
@@ -21,12 +25,14 @@ return new class extends Migration
             $table->timestamps();
         });
     }
-
+    //------------------------------------------------------------------------------------------
     /**
-     * Reverse the migrations.
+     * No hay mucho que mirar por aca.
+     * de momento...
      */
     public function down(): void
     {
         Schema::dropIfExists('users');
     }
+     //------------------------------------------------------------------------------------------
 };
