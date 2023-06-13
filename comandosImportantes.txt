@@ -2,12 +2,21 @@ Comandos importantes a tener en cuenta para el correcto funcionamiento del proye
 Importante tener Composer, para verificarlo se puede escribir en la consola: 
   composer 
   
-Tambien tener XAMPP, incluyendo su PHP y MySQL.
+Tambien tener XAMPP, incluyendo su PHP y MySQL, de XAMPP debe estar ejecutandose "Apache" y "MySQL"
 Tener Laravel, esto se puede mediante la consola:
   composer global require laravel/installer
 
 Generar el servidor:
   php artisan serve
-
 Compilar el codigo en tiempo real:
   npm run dev
+
+Ambos deben ser ejecutados en la terminal, y en conjunto con XAMPP debe estar funcionando correctamente el servidor.
+
+Solucion de posibles errores al importar el proyecto:
+-En caso de no ejecutarse correctamente "MySQL" en XAMPP debe detenerse/cerrar el servicio mediante el administrador de tareas.
+-Si al ejecutar 'php artisan serve' da error, una solucion es verificar si esta instalado Composer, en caso de no tenerlo, en la terminal     
+   ejecutar "composer install"
+-Si al ejecutar 'npm run dev' da error, una solucion es, en la terminal ejecutar "npm install vite"
+-Si no se muestran las imagenes dentro de la pagina web luego de subir un post, ejecutar en la terminal "php artisan storage:link"
+-Si no se esta conectado correctamente a la base de datos y todo parece estar bien, corroborar si se encuentra el archivo '.env' en el proyecto, en caso de no tenerlo, crearlo e importar el texto que se encuentra en 'envBU'
