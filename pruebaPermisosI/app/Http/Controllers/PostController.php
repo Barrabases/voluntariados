@@ -6,6 +6,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class PostController extends Controller
 {
@@ -38,7 +39,15 @@ class PostController extends Controller
         $userId = Auth::id(); // Autentificacion por id.
         $post->title = $request->title; // Titulo del post.
         $post->body = $request->body;  // Cuerpo del post.
-        $post->created_by = $userId;  // Organizacion la cual creo el post.
+        //$post->created_by = $userId;  // id de la organizacion la cual creo el post
+        $user = User::find($userId); // Obtener el usuario correspondiente al ID
+
+         if ($user) {
+            $organizationName = $user->name; // Obtener el nombre de la organización
+
+        $post->created_by = $organizationName; // Asignar el nombre de la organización al campo 'created_by'
+    }
+
         if ($request->hasFile('image')){ // En este trozo de codigo se hace el cambio de la imagen
             $file = $request->file('image'); // para que se almacene en la carpeta 'public' y la reconozca como archivo.
             $path = Storage::putFile('public/images/', $request->file('image'));
@@ -49,6 +58,12 @@ class PostController extends Controller
         return redirect()->route('posts.index'); // y la ruta
         
     }
+
+    public function organization()
+    {
+        return $this->belongsTo(Organization::class);
+    }
+
     //----------------------------------------------------------------------------
     /**
      * Display the specified resource.
